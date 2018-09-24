@@ -33,5 +33,4 @@ def main():
         html_bytes = get_html(full_url)
         save_html(file_name, html_bytes)
         
-
 main()
