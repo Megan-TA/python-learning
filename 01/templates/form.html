@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/login" method = 'post'>
+        <label for="name">
+            姓名： <input type="text" name = 'name'>
+        </label>
+        <label for="password">
+            密码： <input type="password" name = 'password'>
+        </label>
+        <input type="submit" value = '提交'>
+    </form>
+    <hr>
+    <div>
+        <h3>测试jinja模板语法</h3>
+        {% set arr = ['男', '女', '保密'] %}
+
+        {% for item in arr %}
+           <p> {{ item }}  第{{loop.index }}次循环</p>
+        {% endfor %}
+
+        <p>
+            
+        {% set name = 'zhangsan' %}
+
+        {{name}}
+
+
+        <div>
+            {% if name == 'zhangsan'%}
+                我是zhangsan
+            {% else %}
+                {% if name == '张三' %}
+                    我是张三
+                {% endif %}
+            {% endif %}
+        </div>
+        
+        </p>
+    </div>
+</body>
+</html>
