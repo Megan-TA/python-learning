@@ -2,7 +2,7 @@ import requests
 from fake_useragent import UserAgent
 
 headers = {
-    "User-Agent": UserAgent().chrome`1
+    "User-Agent": UserAgent().chrome
 }
 
 baidu_url = 'https://www.baidu.com'
