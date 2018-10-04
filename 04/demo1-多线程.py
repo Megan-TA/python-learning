@@ -10,26 +10,30 @@ headers = {
     'User-Agent': UserAgent().random
 }
 
+
 # 创建爬虫类
 class CrawlInfo(Thread):
     def __init__(self, url_queue, html_queue):
         Thread.__init__(self)
         self.url_queue = url_queue
         self.html_queue = html_queue
+
     def run(self):
-        while self.url_queue.empty() == False:   
-            respone = requests.get(self.url_queue.get(), headers = headers)
+        while not self.url_queue.empty():
+            respone = requests.get(self.url_queue.get(), headers=headers)
             if (respone.status_code == 200):
                 self.html_queue.put(respone.text)
-            # print(respone.text)
+                print(respone.text)
+
 
 # 解析类
 class ParseInfo(Thread):
     def __init__(self, html_queue):
         Thread.__init__(self)
         self.html_queue = html_queue
+
     def run(self):
-        while self.html_queue.empty() == False:
+        while not self.html_queue.empty():
             e = etree.HTML(self.html_queue.get())
             span_contents = e.xpath('//div[@class="content"]/span[1]')
             with open('duanzi.txt', 'a', encoding='utf-8') as f:
@@ -38,6 +42,7 @@ class ParseInfo(Thread):
                     info = span.xpath('string(.)')
                     f.write(info + '\n')
                     # print(info)
+
 
 # 存储url的容器
 url_queue = Queue()
